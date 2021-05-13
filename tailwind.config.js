@@ -1,19 +1,18 @@
 require('dotenv').config();
-const enablePurge = process.env.ENABLE_PURGE || false;
-console.log(enablePurge);
+const enablePurge = process.env.NODE_ENV === 'production';
 
 module.exports = {
   purge: {
-    enabled: false, //enablePurge,
-    content: ['./src/**/*.html', './src/**/*.scss']
+    enabled: enablePurge,
+    content: ['./src/**/*.html', './src/**/*.scss'],
   },
   darkMode: 'class', // or 'media' or 'class'
   theme: {
-    extend: {}
+    extend: {},
   },
 
   variants: {
-    extend: {}
+    extend: {},
   },
-  plugins: []
+  plugins: [],
 };
