@@ -3,23 +3,30 @@
     <h2 class="text-xl font-semibold mb-4">Mina innehav</h2>
 
     <button class="py-2 px-4 bg-gray-300 hover:bg-blue-500 hover:text-white rounded-full"
-            (click)="hidePerformance($event)">Hide
+            (click)="hidePerformance($event)">Toggle
       Performance</button>
 
-    <table class="table-auto mt-8">
-      <thead>
+    <table class="block lg:table table-auto mt-8 w-full" *ngIf="tableToDisplay$ | async as table">
+      <thead class="hidden lg:table-header-group">
         <tr>
-          <th *ngFor="let header of table?.header?.headers" [ngClass]="{'text-right': header.column !== 0}"
+          <th *ngFor="let header of table.header.headers" [ngClass]="{'text-right': header.column !== 0}"
               class="text-left p-1 border-b border-gray-500">
             {{header.label}}
           </th>
         </tr>
       </thead>
-      <tbody>
-        <tr *ngFor="let row of table?.rows">
-          <td *ngFor="let cell of row.cells" [ngClass]="{'text-right': cell.column !== 0}"
-              class="p-1 border-b border-gray-200">
-            {{cell.value}}
+      <tbody class="w-full block lg:table-row-group">
+        <tr *ngFor="let row of table.rows"
+            class="flex flex-wrap border-b lg:border-none py-2 lg:py-0 justify-between lg:table-row w-full">
+          <td *ngFor="let cell of row.cells"
+              [ngClass]="{'text-right': cell.column !== 0, 'font-bold lg:font-normal w-full': cell.column === 0}"
+              class="p-1 lg:border-b border-gray-200 block lg:table-cell">
+            <div class="block lg:hidden text-sm" [ngClass]="{ 'hidden': cell.column === 0}">
+              {{cell.lable}}
+            </div>
+            <div class="block lg:inline">
+              {{cell.value}}
+            </div>
           </td>
         </tr>
       </tbody>

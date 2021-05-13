@@ -26,20 +26,20 @@ export class TableService {
     return table;
   }
 
-  removeColumn<C>(table: Table<C>, column: C): Table<C> {
-    const newHeaders = table.header.headers.filter((h) => h.column !== column);
-    const newRows = table.rows.map((row) => ({
-      cells: row.cells.filter((cell) => cell.column !== column),
-    }));
+  // removeColumn<C>(table: Table<C>, column: C): Table<C> {
+  //   const newHeaders = table.header.headers.filter((h) => h.column !== column);
+  //   const newRows = table.rows.map((row) => ({
+  //     cells: row.cells.filter((cell) => cell.column !== column),
+  //   }));
 
-    return {
-      header: {
-        headers: newHeaders,
-      },
-      rows: newRows,
-      sort: table.sort,
-    };
-  }
+  //   return {
+  //     header: {
+  //       headers: newHeaders,
+  //     },
+  //     rows: newRows,
+  //     sort: table.sort,
+  //   };
+  // }
 }
 
 export interface RawRowData<C> {
@@ -55,6 +55,7 @@ export interface TableCell<C> {
   column: C;
   value: string;
   lable: string;
+  enabled: boolean;
 }
 
 export interface TableRow<C> {
@@ -69,6 +70,7 @@ export interface TableHeader<C> {
   column: C;
   label: string;
   sort: boolean;
+  enabled: boolean;
 }
 
 export interface Table<C> {
@@ -116,6 +118,7 @@ export const createTableCell =
     column,
     lable: labelFunction(column),
     value,
+    enabled: true,
   });
 
 export const createHeaders = <C>(
@@ -127,6 +130,7 @@ export const createHeaders = <C>(
       column: c.column,
       sort: false,
       label: labelFunction(c.column),
+      enabled: true,
     })),
   };
 };
