@@ -1,3 +1,36 @@
-<h1 class="my-8 text-center text-6xl font-bold"><span class="text-green-600">TailwindCSS</span> and <span
-        class="text-red-600">Angular</span> is awesome!</h1>
-<p class="text-center text-3xl font-bold text-red-800">Thanks for reading!</p>
+<div class="container mx-auto mt-16">
+  <div class="bg-white shadow p-4">
+    <h2 class="text-xl font-semibold mb-4">Mina innehav</h2>
+
+    <button class="py-2 px-4 bg-gray-300 hover:bg-blue-500 hover:text-white rounded-full"
+            (click)="hidePerformance($event)">Hide
+      Performance</button>
+
+    <table class="table-auto mt-8">
+      <thead>
+        <tr>
+          <th *ngFor="let header of table?.header?.headers" [ngClass]="{'text-right': header.column !== 0}"
+              class="text-left p-1 border-b border-gray-500">
+            {{header.label}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of table?.rows">
+          <td *ngFor="let cell of row.cells" [ngClass]="{'text-right': cell.column !== 0}"
+              class="p-1 border-b border-gray-200">
+            {{cell.value}}
+          </td>
+        </tr>
+      </tbody>
+      <!-- <tfoot>
+    <tr>
+      <td>sum</td>
+      <td></td>
+      <td>123 SEK</td>
+    </tr>
+  </tfoot> -->
+    </table>
+  </div>
+
+</div>
