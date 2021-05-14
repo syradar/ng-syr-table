@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build --configuration production",
     "build:prod": "NODE_ENV=production ng build --configuration production",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d 'dist/syr-table'",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:ci": "jest --codeCoverage",
